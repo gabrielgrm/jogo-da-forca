@@ -7,11 +7,9 @@ facebook
 coca cola
 nike
 adidas
-louis vuitton
 toyota
 bmw
-mercedes-benz
-mc donald
+mcdonald
 starbucks
 intel
 ibm
@@ -32,10 +30,8 @@ nissan
 volkswagen
 hyundai
 tesla
-red bull
 visa
 mastercard
-american express
 paypal
 shell
 nestlé

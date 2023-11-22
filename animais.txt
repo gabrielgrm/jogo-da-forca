@@ -35,7 +35,7 @@ rinoceronte
 pinguim
 golfinho
 papagaio
-águia
+aguia
 tartaruga
 panda
 macaco

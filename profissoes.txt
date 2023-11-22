@@ -1,19 +1,17 @@
-engenheiro de software
+engenheiro
 otorrinolaringologista
-consultor financeiro
+consultor
 fisioterapeuta
 fisiologista
 nutricionista
 oculista
-desenvolvedor de web
+desenvolvedor
 historiador
-engenheiro ambiental
 meteorologista
-engenheiro civil
 ortodontista
 psiquiatra
 programador
-Analista desistemas
+analista
 dentista
 dermatologista
 contador
@@ -33,10 +31,8 @@ estoquista
 dj
 militar
 doméstica
-designer de Moda
+designer
 radialista
-preparador de imposto
-lavador de pratos
 fotojornalista
 agricultor
 carpinteiro
