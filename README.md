@@ -66,5 +66,5 @@ Aproveite o jogo e boa sorte!
 <br>
 
 ```
-Antonio Valença                                        Gabriel Rodrigues                                        Mirna Lustosa
+Antonio Valença                               Gabriel Rodrigues                              Mirna Lustosa
 ```
