@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include "keyboard.h"
 #include <unistd.h>
-// DefiniÃ§Ã£o da estrutura de nÃ³ da lista encadeada
+// Definição da estrutura de nó da lista encadeada
 struct Node {
     char letter;
     struct Node* next;
@@ -13,7 +13,7 @@ struct Node {
 
 typedef struct Node Node;
 
-// DeclaraÃ§Ã£o de funÃ§Ãµes
+// Declaração de funções
 void mostrarForca(int escolha);
 char* escolherPalavra(const char* nomeArquivo);
 Node* criarNode(char letter);
@@ -22,24 +22,24 @@ int verificarTentativa(Node* head, char letter);
 
 int main(void) {
     char saidaForca[100];
-    int tentativasErradas = 6;
+    int tentativasErradas = 7;
     int iguais = 0;
     int contador = 0, posicao = 0, vencedor, comprimento, i;
     char alfabetoUsuario;
     char* palavraForca;
-    Node* letrasTentadas = NULL; // Lista encadeada para rastrear letras jÃ¡ tentadas
+    Node* letrasTentadas = NULL; // Lista encadeada para rastrear letras já tentadas
 
     mostrarForca(tentativasErradas);
-    printf("\n+--------------------------------------------------------+\n");
+    printf("+--------------------------------------------------------+\n");
     printf("|                    JOGO DA FORCA                       |\n");
     printf("+--------------------------------------------------------+\n");
     printf("|   Escolha uma categoria e teste seus conhecimentos!    |\n");
     printf("|--------------------------------------------------------|\n");
-    printf("|   1 â€“ Animais          |   4 â€“ Famosos                 |\n");
-    printf("|   2 â€“ Marcas           |   5 â€“ ProfissÃµes              |\n");
-    printf("|   3 â€“ PaÃ­ses           |   0 â€“ Sair do Jogo            |\n");
+    printf("|   1 – Animais          |   4 – Famosos                 |\n");
+    printf("|   2 – Marcas           |   5 – Profissões              |\n");
+    printf("|   3 – Países           |   0 – Sair do Jogo            |\n");
     printf("+--------------------------------------------------------+\n");
-    printf("|   Digite o nÃºmero da opÃ§Ã£o desejada:                   |\n");
+    printf("|   Digite o número da opção desejada:                   |\n");
     printf("+--------------------------------------------------------+\n");
 
     int opcao;
@@ -54,13 +54,13 @@ int main(void) {
         case 4: nomeArquivo = "famosos.txt"; break;
         case 5: nomeArquivo = "profissoes.txt"; break;
         case 0: printf("Saindo do jogo...\n"); return 0;
-        default: printf("OpÃ§Ã£o invÃ¡lida!\n"); return 1;
+        default: printf("Opção inválida!\n"); return 1;
     }
 
-    // Escolhe uma palavra aleatÃ³ria da categoria selecionada
+    // Escolhe uma palavra aleatória da categoria selecionada
     palavraForca = escolherPalavra(nomeArquivo);
     if (palavraForca == NULL) {
-        printf("NÃ£o foi possÃ­vel carregar uma palavra da categoria.\n");
+        printf("Não foi possível carregar uma palavra da categoria.\n");
         return 1;
     }
 
@@ -69,8 +69,8 @@ int main(void) {
         saidaForca[i] = '_';
     }
     saidaForca[comprimento] = '\0';
-
-    // InÃ­cio do jogo
+    tentativasErradas = 6;
+    // Início do jogo
     system("clear");
     keyboardInit(); // Inicializar a leitura de teclado sem esperar Enter
     while (tentativasErradas > 0) {
@@ -78,8 +78,8 @@ int main(void) {
         system("clear");
         mostrarForca(tentativasErradas);
         printf("\n%s", saidaForca);
-        printf("\n\nLetras jÃ¡ tentadas: ");
-        // Imprimir letras jÃ¡ tentadas
+        printf("\n\nLetras já tentadas: ");
+        // Imprimir letras já tentadas
         Node* temp = letrasTentadas;
         while (temp != NULL) {
             printf("%c ", temp->letter);
@@ -91,14 +91,14 @@ int main(void) {
             alfabetoUsuario = tolower(readch()); // Ler uma letra sem pressionar Enter
 
             if (alfabetoUsuario < 'a' || alfabetoUsuario > 'z') {
-                printf("\nEntrada invÃ¡lida, tente novamente.\n");
+                printf("\nEntrada inválida, tente novamente.\n");
                 usleep(500000);
                 continue;
             }
 
-            // Verificar se a letra jÃ¡ foi tentada
+            // Verificar se a letra já foi tentada
             if (verificarTentativa(letrasTentadas, alfabetoUsuario)) {
-                printf("\nVocÃª jÃ¡ tentou essa letra. Tente outra.\n");
+                printf("\nVocê já tentou essa letra. Tente outra.\n");
                 usleep(500000);
                 continue;
             }
@@ -120,7 +120,7 @@ int main(void) {
             if (strcmp(saidaForca, palavraForca) == 0) {
                 system("clear");
                 keyboardDestroy();
-                printf("\nParabÃ©ns! VocÃª adivinhou a palavra correta: %s\n", palavraForca);
+                printf("\nParabéns! Você adivinhou a palavra correta: %s\n", palavraForca);
                 break;
             }
         }
@@ -133,10 +133,10 @@ int main(void) {
     if (tentativasErradas <= 0) {
         system("clear");
         mostrarForca(tentativasErradas);
-        printf("\nVocÃª perdeu. A palavra era: %s\n", palavraForca);
+        printf("\nVocê perdeu. A palavra era: %s\n", palavraForca);
     }
 
-    // Libere a memÃ³ria da lista de letras tentadas
+    // Libere a memória da lista de letras tentadas
     Node* temp = letrasTentadas;
     while (temp != NULL) {
         Node* next = temp->next;
@@ -161,7 +161,7 @@ char* escolherPalavra(const char* nomeArquivo) {
         qtdPalavras++;
     }
 
-    srand(time(NULL)); // Semente para o gerador de nÃºmeros aleatÃ³rios
+    srand(time(NULL)); // Semente para o gerador de números aleatórios
     int escolhaPalavra = rand() % qtdPalavras;
 
     fseek(file, 0, SEEK_SET);
@@ -171,7 +171,7 @@ char* escolherPalavra(const char* nomeArquivo) {
 
     linha[strcspn(linha, "\n")] = 0;
 
-    // Remover espaÃ§os em branco extras no final da palavra
+    // Remover espaços em branco extras no final da palavra
     int length = strlen(linha);
     while (length > 0 && isspace(linha[length - 1])) {
         linha[length - 1] = '\0';
@@ -186,7 +186,7 @@ char* escolherPalavra(const char* nomeArquivo) {
 }
 
 
-// FunÃ§Ã£o para criar um nÃ³ da lista encadeada
+// Função para criar um nó da lista encadeada
 Node* criarNode(char letter) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->letter = letter;
@@ -194,28 +194,36 @@ Node* criarNode(char letter) {
     return newNode;
 }
 
-// FunÃ§Ã£o para inserir um nÃ³ na lista encadeada
+// Função para inserir um nó na lista encadeada
 void inserirNode(Node** head, char letter) {
     Node* newNode = criarNode(letter);
     newNode->next = *head;
     *head = newNode;
 }
 
-// FunÃ§Ã£o para verificar se uma letra jÃ¡ foi tentada
+// Função para verificar se uma letra já foi tentada
 int verificarTentativa(Node* head, char letter) {
     Node* current = head;
     while (current != NULL) {
         if (current->letter == letter) {
-            return 1; // A letra jÃ¡ foi tentada
+            return 1; // A letra já foi tentada
         }
         current = current->next;
     }
-    return 0; // A letra ainda nÃ£o foi tentada
+    return 0; // A letra ainda não foi tentada
 }
 
-// FunÃ§Ã£o para mostrar a forca
+// Função para mostrar a forca
 void mostrarForca(int tentativasErradas) {
     switch(tentativasErradas) {
+      case 7:
+      printf("\n||===== ");
+      printf("\n||    | ");
+      printf("\n||    O                           +----------------------+");
+      printf("\n||   /|\\                          |    Antonio Valença   |");
+      printf("\n||   / \\                          |   Gabriel Rodrigues  |");
+      printf("\n||                                |     Mirna Lustosa    |");
+      break;
         case 6:
         printf("\n||===== ");
         printf("\n||    | ");
