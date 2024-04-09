@@ -64,7 +64,3 @@ Divirta-se jogando o Jogo da Forca e não deixe de dar feedback sobre sua experi
 
 Aproveite o jogo e boa sorte!
 <br>
-
-```
-Antonio Valença                               Gabriel Rodrigues                              Mirna Lustosa
-```
